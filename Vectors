@@ -1,0 +1,146 @@
+#include <iostream>
+#include <vector>
+#include <iomanip>
+using namespace std;
+
+void DisplayMenu()
+{
+	cout << endl;
+	cout << "P - Print numbers" << endl;
+	cout << "A - Add a number" << endl;
+	cout << "M - Display mean of the numbers" << endl;
+	cout << "S - Display the smallest number" << endl;
+	cout << "L - Display the largest number" << endl;
+	cout << "F - find" << endl;
+	cout << "Q - Quit" << endl;
+	cout << endl;
+	cout << "Enter your selection: ";
+}
+
+void Print(const vector<int> vec)
+{
+	if (vec.size() != 0)
+	{
+		cout << "Printing elemens from the list" << endl;
+		cout << "[ ";
+		for (auto element : vec)
+		{
+			cout << element << " ";
+		}
+		cout << "]";
+	}
+	else
+	{
+		cout << "[] - list is empty" << endl;
+	}
+}
+void Add(vector<int>& vec) 
+{ 
+	cout << "Enter an integer to be added to the list: ";
+	int NumberToAdd{};
+	cin >> NumberToAdd;
+	vec.push_back(NumberToAdd);
+	cout << NumberToAdd << " added" << endl;
+}
+void Mean(const vector<int> vec) 
+{ 
+	if (vec.size() == 0)
+	{
+		cout << "Unable to calculate mean - no data" << endl;
+	}
+	else
+	{
+		int RunningSum{};
+		for (auto element : vec)
+		{
+			RunningSum += element;
+		}
+		double Mean{};
+		Mean = static_cast<double>(RunningSum) / vec.size();
+		cout << "The mean is: " << setprecision(2) << fixed << Mean << endl;
+	}
+}
+void Smallest(const vector<int> vec)
+{
+	if (vec.size() == 0)
+	{
+		cout << "Unable to calculate smallest - no data" << endl;
+	}
+	else
+	{
+		int min{ vec.at(0) };
+		for (auto elements : vec)
+		{
+			if (min > elements)
+			{
+				min = elements;
+			}
+		}
+		cout << "The smallest number from the list is: " << min << endl;
+	}
+}
+void Largest(const vector<int> vec)
+{
+	if (vec.size() == 0)
+	{
+		cout << "Unable to calculate largest - no data" << endl;
+	}
+	else
+	{
+		int max{ vec.at(0) };
+		for (auto elements : vec)
+		{
+			if (max < elements)
+			{
+				max = elements;
+			}
+		}
+		cout << "The largest number from the list is: " << max << endl;
+	}
+}
+void Find(const vector<int> vec)
+{
+	int NumberToFind{};
+	cin >> NumberToFind;
+	int counter = count(vec.begin(), vec.end(), NumberToFind);
+	cout << "The number " << NumberToFind << " appears " << counter << " times" << endl;
+}
+
+int main()
+{
+	char selection{};
+	vector<int> vec;
+
+	do {
+		DisplayMenu();
+		cin >> selection;
+		selection = toupper(selection);
+		switch (selection)
+		{
+		case 'P':
+			Print(vec);
+			break;
+		case 'A':
+			Add(vec);
+			break;
+		case 'M':
+			Mean(vec);
+			break;
+		case 'S':
+			Smallest(vec);
+			break;
+		case 'L':
+			Largest(vec);
+			break;
+		case 'F':
+			Find(vec);
+			break;
+		case 'Q':
+			cout << "Goodbye!";
+			break;
+		default:
+			cerr << "Invalid selection. Please re-enter your selection!";
+			break;
+		}
+	} while (selection != 'Q');
+}
