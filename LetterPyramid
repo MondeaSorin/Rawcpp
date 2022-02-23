@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+void Pyramid(string FirstHalf, string Base = "", int counter = 0)
+{
+	string SecondHalf = FirstHalf;
+	reverse(SecondHalf.begin(), SecondHalf.end());
+
+	FirstHalf.erase(FirstHalf.end() - 1);
+	Base = FirstHalf + SecondHalf;
+	
+	if (FirstHalf.size() == 0)
+	{
+		while (counter > 0)
+		{
+			Base.insert(0, " ");
+			counter--;
+		}
+		cout << Base << endl;
+		return;
+	}
+	//int counter1 = counter;     //Uncomment for reverse pyramid
+	//while (counter1 > 0)
+	//{
+	//	Base.insert(0, " ");
+	//	counter1--;
+	//}
+	//cout << Base << endl;
+
+	counter++;
+
+	Pyramid(FirstHalf, Base, counter);
+
+	counter--;						//Normal pyramid (line 35 - line 41)
+	while (counter > 0)
+	{
+		Base.insert(0, " ");
+		counter--;
+	}
+	cout << Base << endl;
+}
+
+int main()
+{
+	string FirstHalf{}, SecondHalf{};
+	getline(cin, FirstHalf);
+	Pyramid(FirstHalf);
+}
