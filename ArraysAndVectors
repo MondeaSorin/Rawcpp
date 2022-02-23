@@ -1,0 +1,48 @@
+#include <iostream>
+#include <vector>
+#include <memory>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+	vector<int> vec1;
+	vector<int> vec2;
+
+	vec1.push_back(10);
+	vec1.push_back(20);
+
+	vec2.push_back(100);
+	vec2.push_back(200);
+
+	//method 1
+	for (size_t i{}; i < vec1.size(); ++i)
+	{
+		cout << vec1.at(i);
+	}
+
+	////method 2
+	//for (const auto& element : vec1)
+	//	cout << element;
+
+	////method 3
+	//vector<int>::iterator it = vec1.begin();
+	//for (it = vec1.begin(); it < vec1.end(); ++it)
+	//{
+	//	cout << *it;
+	//}
+	//
+	vector<vector<int>> Vec2D;
+	Vec2D.push_back(vec1);
+	Vec2D.push_back(vec2);
+
+	cout << endl << endl;
+	for (size_t i{}; i < vec1.size(); ++i)
+	{
+		for (size_t j{}; j < vec2.size(); ++j)
+		{
+			cout << Vec2D.at(i).at(j) << " ";
+		}
+		cout << endl;
+	}
+}
