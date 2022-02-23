@@ -1,0 +1,55 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+	const int dollar_val{ 100 };
+	const int quarter_val{ 25 };
+	const int dime_val{ 10 };
+	const int nickel_val{ 5 };
+	const int penny_val{ 1 };
+
+
+	cout << "Enter an ammount in cents: ";
+	int cents{};
+	cin >> cents;
+	cout << "You can provide the change as follows: " << endl;
+	
+	int dollars{};
+	dollars = cents / dollar_val;
+	cents %= dollar_val;
+
+	cout << setw(15) << left << "Dollars"
+		<< ": " << setw(5) << left << dollars << endl;
+
+	int quarters{};
+	quarters = cents / quarter_val;
+	cents %= quarter_val;
+
+	cout << setw(15) << left << "Quarters"
+		<< ": " << setw(5) << left << quarters << endl;
+
+	int dimes{};
+	dimes = cents / dime_val;
+	cents %= dime_val;
+
+	cout << setw(15) << left << "Dimes"
+		<< ": " << setw(5) << left << dimes << endl;
+
+	int nickels{};
+	nickels = cents / nickel_val;
+	cents %= nickel_val;
+
+	cout << setw(15) << left << "Nickels"
+		<< ": " << setw(5) << left << nickels << endl;
+
+	int pennies{};
+	pennies = cents / penny_val;
+	cents %= penny_val;
+
+	cout << setw(15) << left << "Pennies"
+		<< ": " << setw(5) << left << pennies << endl;
+
+
+}
